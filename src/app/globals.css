@@ -1,0 +1,179 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-ink;
+    font-feature-settings: "ss01" on, "cv01" on;
+  }
+
+  html[dir="rtl"] body {
+    @apply font-arabic;
+  }
+
+  ::selection {
+    background: #dfff00;
+    color: #111111;
+  }
+
+  :focus-visible {
+    outline: 2px solid #111111;
+    outline-offset: 3px;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .shell {
+    @apply mx-auto w-full max-w-shell px-5 sm:px-8 lg:px-10;
+  }
+
+  .h-display {
+    font-size: clamp(2.6rem, 6.2vw, 5rem);
+    line-height: 0.94;
+    letter-spacing: -0.045em;
+    font-weight: 400;
+  }
+
+  .h-section {
+    font-size: clamp(1.75rem, 3.2vw, 2.75rem);
+    line-height: 1.04;
+    letter-spacing: -0.035em;
+    font-weight: 400;
+  }
+
+  .eyebrow {
+    @apply text-[11px] font-medium uppercase tracking-[0.22em] text-muted;
+  }
+
+  .btn {
+    @apply inline-flex h-11 select-none items-center justify-center gap-2 whitespace-nowrap px-5 text-[11px] font-semibold uppercase tracking-[0.14em] transition-colors disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  .btn-primary {
+    @apply btn bg-ink text-white hover:bg-lemon hover:text-ink;
+  }
+
+  .btn-accent {
+    @apply btn bg-lemon text-ink hover:bg-ink hover:text-white;
+  }
+
+  .btn-outline {
+    @apply btn border border-ink/25 text-ink hover:border-ink hover:bg-soft;
+  }
+
+  .btn-ghost {
+    @apply btn text-ink hover:bg-soft;
+  }
+
+  .btn-sm {
+    @apply h-9 px-3 text-[10px] tracking-[0.12em];
+  }
+
+  .icon-btn {
+    @apply inline-flex h-10 w-10 items-center justify-center border border-line text-ink transition-colors hover:border-ink hover:bg-soft;
+  }
+
+  .label {
+    @apply mb-1.5 block text-[10px] font-semibold uppercase tracking-[0.14em] text-muted;
+  }
+
+  .field {
+    @apply h-11 w-full border border-line bg-white px-3 text-sm text-ink outline-none transition-colors placeholder:text-muted/60 focus:border-ink;
+  }
+
+  textarea.field {
+    @apply h-auto min-h-[110px] py-2.5 leading-relaxed;
+  }
+
+  select.field {
+    @apply appearance-none bg-[length:14px] bg-[right_0.75rem_center] bg-no-repeat pe-9;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23111111' stroke-width='1.3'/%3E%3C/svg%3E");
+  }
+
+  html[dir="rtl"] select.field {
+    background-position: left 0.75rem center;
+  }
+
+  .card {
+    @apply border border-line bg-white;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1 border border-ink/15 px-2 py-1 text-[9.5px] font-semibold uppercase tracking-[0.14em] leading-none;
+  }
+
+  .badge-lemon {
+    @apply badge border-lemon bg-lemon text-ink;
+  }
+
+  .badge-dark {
+    @apply badge border-ink bg-ink text-white;
+  }
+
+  .badge-muted {
+    @apply badge border-line bg-soft text-muted;
+  }
+
+  .link-underline {
+    @apply relative inline-block after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-left after:scale-x-0 after:bg-ink after:transition-transform hover:after:scale-x-100;
+  }
+
+  html[dir="rtl"] .link-underline {
+    @apply after:origin-right;
+  }
+
+  .prose-editorial {
+    @apply text-[15px] leading-[1.85] text-ink/85;
+  }
+  .prose-editorial p {
+    @apply mb-5;
+  }
+  .prose-editorial h2 {
+    @apply mb-3 mt-8 text-2xl;
+  }
+  .prose-editorial ul {
+    @apply mb-5 list-disc space-y-2 ps-5;
+  }
+
+  .table-admin {
+    @apply w-full border-collapse text-sm;
+  }
+  .table-admin th {
+    @apply border-b border-line px-3 py-2.5 text-start text-[10px] font-semibold uppercase tracking-[0.12em] text-muted;
+  }
+  .table-admin td {
+    @apply border-b border-line/70 px-3 py-3 align-middle;
+  }
+  .table-admin tbody tr:hover {
+    @apply bg-soft/60;
+  }
+
+  .skeleton {
+    @apply animate-pulse bg-soft;
+  }
+}
